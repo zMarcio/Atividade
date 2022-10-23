@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregavel 2</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="/js/script.js"></script>
+    <style>
+        .blue{
+            background: gray;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 300px;
+        
+        }
+        h2 {
+            text-align: center;
+            height: auto;
+            width: auto; 
+        }
+        body{
+            background-image: url(https://upload.wikimedia.org/wikipedia/pt/c/cd/Nazar%C3%A9_Confusa.jpg);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        function fibonacci(n) {
+            return n < 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
+        }
+
+        function somatorio(conjuntoDeNumeros) {
+
+            var soma = 0;
+            var numeros = conjuntoDeNumeros.split(' ');
+
+            for (var i = 0; i < numeros.length; i++) {
+                numeros[i] = parseInt(numeros[i]);
+            }
+
+            for (var i = 0; i < numeros.length; i++) {
+                soma += numeros[i];
+            }
+            return soma;
+
+        }
+
+        function ehPrimo(n) {
+
+            for (i = n - 1; i > 1; i--) {
+                if (n % i == 0) {
+                    return "Não primo";
+                }
+            }
+            return "Primo";
+        }
+
+        function maximoDivisor(entrada) {
+            mdc = 0;
+
+            var num_separado = entrada.split(' ');
+
+            for (var i = 0; i < num_separado.length; i++) {
+                num_separado[i] = parseInt(num_separado[i]);
+            }
+
+            var a = num_separado[0];
+            var b = num_separado[1];
+
+            if (a < b) {
+                aux = a;
+                a = b;
+                b = aux;
+            }
+
+            for (i = 1; i < a; i++) {
+                if (a % i == 0 && b % i == 0) {
+                    mdc = i;
+                }
+            }
+
+            return mdc;
+        }
+
+        function contagem(n) {
+            var qtd = 0;
+
+            var numeros = n.split(' ');
+
+            for (i = 0; i < numeros.length; i++) {
+                if (!(numeros[i].includes('.') || numeros[i].includes(','))) {
+                    qtd++;
+                }
+            }
+
+            return qtd;
+        }
+
+        function swap(items, leftIndex, rightIndex) {
+            var temp = items[leftIndex];
+            items[leftIndex] = items[rightIndex];
+            items[rightIndex] = temp;
+        }
+
+        function partition(items, left, right) {
+            var pivot = items[Math.floor((right + left) / 2)],
+                i = left,
+                j = right;
+            while (i <= j) {
+                while (items[i] < pivot) {
+                    i++;
+                }
+                while (items[j] > pivot) {
+                    j--;
+                }
+                if (i <= j) {
+                    swap(items, i, j);
+                    i++;
+                    j--;
+                }
+            }
+            return i;
+        }
+
+        function quickSort(items, left, right) {
+            var index;
+            if (items.length > 1) {
+                index = partition(items, left, right);
+                if (left < index - 1) {
+                    quickSort(items, left, index - 1);
+                }
+                if (index < right) {
+                    quickSort(items, index, right);
+                }
+            }
+            return items;
+        }
+
+        function ordenar(arr) {
+            var vetor = arr.split(' ');
+            for (let i = 0; i < vetor.length; i++) {
+                vetor[i] = parseInt(vetor[i]);
+            }
+            for (let i = 0; i < vetor.length; i++) {
+                for (let j = 0; j < vetor.length - 1 - i; j++) {
+                    if (vetor[i] > vetor[i + 1]) {
+                        let temp = vetor[i];
+                        vetor[i] = vetor[i + 1];
+                        vetor[i + 1] = temp;
+                    }
+                }
+            }
+            return vetor;
+        }
+    </script>
+
+    <div class="container">
+        <div class="blue">
+        <h2 style="color: blue;">Fibonacci: <input type="text" id="fibinput"> <button style="color: red" onclick="alert(fibonacci(document.getElementById('fibinput').value))">Calcular</button></h2>
+        <h2 style="color: red;">Somar numeros: <input type="text" id="somainput"> <button style="color: red" onclick="alert(somatorio(document.getElementById('somainput').value))">Calcular</button></h2>
+        <h2 style="color: white;">Verificar se é primo: <input type="text" id="primoinput"> <button style="color: red" onclick="alert(ehPrimo(document.getElementById('primoinput').value))">Calcular</button></h2>
+        <h2 style="color: burlywood;">Maximo divisor: <input type="text" id="mdcinput"> <button style="color: red" onclick="alert(maximoDivisor(document.getElementById('mdcinput').value))">Calcular</button></h2>
+        <h2 style="color: blueviolet;">Contar inteiros: <input type="text" id="contarinput"> <button style="color: red" onclick="alert(contagem(document.getElementById('contarinput').value))">Contar</button></h2>
+        <h2 style="color: brown;">Conjunto de números: <input type="text" id="ordenarinput"> <button style="color: red" onclick="alert(ordenar(document.getElementById('ordenarinput').value))">Ordenar</button></h2>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
